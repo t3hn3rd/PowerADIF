@@ -1,0 +1,6 @@
+﻿FieldName,DataType,Enumeration,Description
+ADIF_VER,String,,identifies the version of ADIF used in this file in the format X.Y.Z where:`n- X is an integer designating the ADIF epoch`n- Y is an integer between 0 and 9 designating the major version`n- Z is an integer between 0 and 9 designating the minor version
+CREATED_TIMESTAMP,String,,identifies the UTC date and time that the file was created in the format of 15 characters YYYYMMDD HHMMSS where:`n- YYYYMMDD is a Date data type`n- HHMMSS is a 6 character Time data type
+PROGRAMID,String,,"identifies the name of the logger, converter, or utility that created or processed this ADIF file"
+PROGRAMVERSION,String,,"identifies the version of the logger, converter, or utility that created or processed this ADIF file"
+USERDEFn,String,,"specifies the name and optional enumeration or range of the nth user-defined field, where n is a positive integer.`n`nThe name of a user-defined field may not be an ADIF Field name`nThe name of a user-defined field may not contain:`n- a comma`n-a colon`n- an open-angle-bracket or close-angle-bracket character`n- an open-curly-bracket or close-curly-bracket character`nThe name of a user-defined field may not begin or end with a space character."
