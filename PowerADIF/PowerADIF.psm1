@@ -1685,14 +1685,16 @@ class ADIFTokenizer {
 	}
 
 	[void] ProcessAll() {
+		$TokenList = [System.Collections.Generic.List[ADIFTokenInstance]]::new()
 		$Token = [ADIFTokenInstance]::new()
 		while ($this.Index -lt $this.ADIF.Length) {
 			$Token = $this.ProcessNext($Token, $this.ADIF[$this.Index])
 			if ($Token.Complete) {
-				$this.Tokens += $Token
+				$TokenList.Add($Token)
 				$Token = [ADIFTokenInstance]::new()
 			}
 		}
+		$this.Tokens = $TokenList.ToArray()
 	}
 
 	[void] Init([String]$Data, [bool]$RunNow, [bool]$DebugTokenizer) {
@@ -1783,23 +1785,23 @@ class ADIFStructure {
 	}
 
 	[ADIFTokenInstance[]] Tokenize() {
-		[ADIFTokenInstance[]]$OutputTokens = [ADIFTokenInstance[]]@()
+		$TokenList = [System.Collections.Generic.List[ADIFTokenInstance]]::new()
 
 		$ParseHeader = ($this.Header | Get-Member -MemberType NoteProperty)
 		foreach($Field in $ParseHeader) {
-			$OutputTokens += [ADIFTokenInstance]::New($Field.Name, $this.Header.DataTypes[$Field.Name], $this.Header."$($Field.Name)", $this.Header.Comments[$Field.Name])
+			$TokenList.Add([ADIFTokenInstance]::New($Field.Name, $this.Header.DataTypes[$Field.Name], $this.Header."$($Field.Name)", $this.Header.Comments[$Field.Name]))
 		}
-		$OutputTokens += [ADIFTokenInstance]::New("EOH","","","`n")
+		$TokenList.Add([ADIFTokenInstance]::New("EOH","","","`n"))
 
 		foreach($Record in $this.Records) {
 			$ParseRecord = ($Record | Get-Member -MemberType NoteProperty)
 			foreach ($Field in $ParseRecord) {
-				$OutputTokens += [ADIFTokenInstance]::New($Field.Name, $Record.DataTypes[$Field.Name], $Record."$($Field.Name)", $Record.Comments[$Field.Name])
+				$TokenList.Add([ADIFTokenInstance]::New($Field.Name, $Record.DataTypes[$Field.Name], $Record."$($Field.Name)", $Record.Comments[$Field.Name]))
 			}
-			$OutputTokens += [ADIFTokenInstance]::New("EOR","","","`n")
+			$TokenList.Add([ADIFTokenInstance]::New("EOR","","","`n"))
 		}
 
-		return $OutputTokens
+		return $TokenList.ToArray()
 	}
 }
 
@@ -1888,14 +1890,13 @@ function ConvertFrom-ADIF {
 
 		[ADIFStructure]$ADIF = [ADIFStructure]::new($Tokens)
 
+		$RecordList = [System.Collections.Generic.List[ADIFRecord]]::new()
 		[ADIFRecord]$Record = [ADIFRecord]::new()
-
-		[int]$TokenIndex = 0
 
 		foreach ($Token in $Tokens) {
 			if($ADIF.HeaderParsed) {
 				if($Token.Field -eq "EOR") {
-					$ADIF.Records += $Record
+					$RecordList.Add($Record)
 					$Record = [ADIFRecord]::new()
 				} else {
 					$Record.AddField($Token.Field, $Token.Value, $Token.DataType, $Token.Comment)
@@ -1907,8 +1908,8 @@ function ConvertFrom-ADIF {
 					$ADIF.Header.AddField($Token.Field, $Token.Value, $Token.DataType, $Token.Comment)
 				}
 			}
-			$TokenIndex++
 		}
+		$ADIF.Records = $RecordList.ToArray()
 
 		return [ADIFStructure]$ADIF
 	}
