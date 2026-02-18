@@ -1,7 +1,7 @@
 @{
   RootModule = 'PowerADIF.psm1'
 
-  ModuleVersion = '1.0.0'
+  ModuleVersion = '1.1.0'
 
   GUID = 'c6fe5929-1021-4f6a-99cc-571fea3912da'
 

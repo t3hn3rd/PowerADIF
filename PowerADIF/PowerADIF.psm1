@@ -5,7 +5,7 @@
 		This module exposes a set of functions in order to
 		import and process the Amateur Data Interchange Format.
 
-		Format specification here: https://adif.org/314/ADIF_314.htm
+		Format specification here: https://adif.org.uk/316/ADIF_316.htm
 	.NOTES
         FILE NAME:
             PowerADIF.psm1
@@ -33,7 +33,7 @@ class ADIFEnumerations {
 		return [PSCustomObject]@{
 			"AwardList"                = ""
 			"CreditList"               = ""
-			"SpondoredAwardList"       = ""
+			"SponsoredAwardList"       = ""
 			"Boolean"                  = "B"
 			"Digit"                    = ""
 			"Integer"                  = ""
@@ -55,8 +55,9 @@ class ADIFEnumerations {
 			"Location"                 = "L"
 			"POTARef"                  = ""
 			"POTARefList"              = ""
-			"SecondarySubdivisionList" = ""
-			"SOTARef"                  = ""
+			"SecondarySubdivisionList"    = ""
+			"SecondarySubdivisionListAlt" = ""
+			"SOTARef"                     = ""
 			"WWFFRef"                  = ""
 		}
 	}
@@ -87,6 +88,7 @@ class ADIFEnumerations {
 			'EPA'	=	[PSCustomObject]@{ 'Section Name' = 'Eastern Pennsylvania'; 'DXCC Entity Code' = @(291) }
 			'EWA'	=	[PSCustomObject]@{ 'Section Name' = 'Eastern Washington'; 'DXCC Entity Code' = @(291) }
 			'GA'	=	[PSCustomObject]@{ 'Section Name' = 'Georgia'; 'DXCC Entity Code' = @(291) }
+			'GH'	=	[PSCustomObject]@{ 'Section Name' = 'Golden Horseshoe'; 'DXCC Entity Code' = @(1) }
 			'GTA'	=	[PSCustomObject]@{ 'Section Name' = 'Greater Toronto Area'; 'DXCC Entity Code' = @(1) }
 			'ID'	=	[PSCustomObject]@{ 'Section Name' = 'Idaho'; 'DXCC Entity Code' = @(291) }
 			'IL'	=	[PSCustomObject]@{ 'Section Name' = 'Illinois'; 'DXCC Entity Code' = @(291) }
@@ -105,7 +107,9 @@ class ADIFEnumerations {
 			'MS'	=	[PSCustomObject]@{ 'Section Name' = 'Mississippi'; 'DXCC Entity Code' = @(291) }
 			'MO'	=	[PSCustomObject]@{ 'Section Name' = 'Missouri'; 'DXCC Entity Code' = @(291) }
 			'MT'	=	[PSCustomObject]@{ 'Section Name' = 'Montana'; 'DXCC Entity Code' = @(291) }
+			'NB'	=	[PSCustomObject]@{ 'Section Name' = 'New Brunswick'; 'DXCC Entity Code' = @(1) }
 			'NE'	=	[PSCustomObject]@{ 'Section Name' = 'Nebraska'; 'DXCC Entity Code' = @(291) }
+			'NS'	=	[PSCustomObject]@{ 'Section Name' = 'Nova Scotia'; 'DXCC Entity Code' = @(1) }
 			'NV'	=	[PSCustomObject]@{ 'Section Name' = 'Nevada'; 'DXCC Entity Code' = @(291) }
 			'NH'	=	[PSCustomObject]@{ 'Section Name' = 'New Hampshire'; 'DXCC Entity Code' = @(291) }
 			'NM'	=	[PSCustomObject]@{ 'Section Name' = 'New Mexico'; 'DXCC Entity Code' = @(291) }
@@ -127,7 +131,7 @@ class ADIFEnumerations {
 			'ONS'	=	[PSCustomObject]@{ 'Section Name' = 'Ontario South'; 'DXCC Entity Code' = @(1) }
 			'ORG'	=	[PSCustomObject]@{ 'Section Name' = 'Orange'; 'DXCC Entity Code' = @(291) }
 			'OR'	=	[PSCustomObject]@{ 'Section Name' = 'Oregon'; 'DXCC Entity Code' = @(291) }
-			'PAC'	=	[PSCustomObject]@{ 'Section Name' = 'Pacific'; 'DXCC Entity Code' = @(9, 20, 103, 110, 123, 134, 138, 166, 174, 197, 297, 515) }
+			'PAC'	=	[PSCustomObject]@{ 'Section Name' = 'Pacific'; 'DXCC Entity Code' = @(9, 20, 103, 110, 123, 138, 166, 174, 197, 297, 515) }
 			'PE'	=	[PSCustomObject]@{ 'Section Name' = 'Prince Edward Island'; 'DXCC Entity Code' = @(1) }
 			'PR'	=	[PSCustomObject]@{ 'Section Name' = 'Puerto Rico'; 'DXCC Entity Code' = @(43, 202) }
 			'QC'	=	[PSCustomObject]@{ 'Section Name' = 'Quebec'; 'DXCC Entity Code' = @(1) }
@@ -144,6 +148,7 @@ class ADIFEnumerations {
 			'STX'	=	[PSCustomObject]@{ 'Section Name' = 'South Texas'; 'DXCC Entity Code' = @(291) }
 			'SFL'	=	[PSCustomObject]@{ 'Section Name' = 'Southern Florida'; 'DXCC Entity Code' = @(291) }
 			'SNJ'	=	[PSCustomObject]@{ 'Section Name' = 'Southern New Jersey'; 'DXCC Entity Code' = @(291) }
+			'TER'	=	[PSCustomObject]@{ 'Section Name' = 'Territories'; 'DXCC Entity Code' = @(1) }
 			'TN'	=	[PSCustomObject]@{ 'Section Name' = 'Tennessee'; 'DXCC Entity Code' = @(291) }
 			'VI'	=	[PSCustomObject]@{ 'Section Name' = 'US Virgin Islands'; 'DXCC Entity Code' = @(105, 182, 285) }
 			'UT'	=	[PSCustomObject]@{ 'Section Name' = 'Utah'; 'DXCC Entity Code' = @(291) }
@@ -254,6 +259,7 @@ class ADIFEnumerations {
 			'AP-SPRINT'             = 'Asia - Pacific Sprint'
 			'AR-QSO-PARTY'          = 'Arkansas QSO Party'
 			'ARI-DX'                = 'ARI DX Contest'
+			'ARI-EME'               = 'ARI EME Contest'
 			'ARRL-10'               = 'ARRL 10 Meter Contest'
 			'ARRL-10-GHZ'           = 'ARRL 10 GHz and Up Contest'
 			'ARRL-160'              = 'ARRL 160 Meter Contest'
@@ -275,9 +281,11 @@ class ADIFEnumerations {
 			'ARRL-VHF-JUN'          = 'ARRL June VHF QSO Party'
 			'ARRL-VHF-SEP'          = 'ARRL September VHF QSO Party'
 			'AZ-QSO-PARTY'          = 'Arizona QSO Party'
+			'BANGGAI-DX'            = 'Banggai DX Contest'
 			'BARTG-RTTY'            = 'BARTG Spring RTTY Contest'
 			'BARTG-SPRINT'          = 'BARTG Sprint Contest'
 			'BC-QSO-PARTY'          = 'British Columbia QSO Party'
+			'BEKASI-MERDEKA-CONTEST' = 'Bekasi Merdeka Contest'
 			'CA-QSO-PARTY'          = 'California QSO Party'
 			'CIS-DX'                = 'CIS DX Contest'
 			'CO-QSO-PARTY'          = 'Colorado QSO Party'
@@ -296,6 +304,15 @@ class ADIFEnumerations {
 			'CVA-DX-SSB'            = 'Concurso Verde e Amarelo DX CW Contest'
 			'CWOPS-CW-OPEN'         = 'CWops CW Open Competition'
 			'CWOPS-CWT'             = 'CWops Mini-CWT Test'
+			'DARC-10'               = 'DARC 10-Meter Digital Contest'
+			'DARC-CWA'              = 'DARC CW-Aktivitaet'
+			'DARC-FT4'              = 'DARC FT4 Contest'
+			'DARC-HELL'             = 'DARC Hellschreiber-Aktivitaet'
+			'DARC-MICROWAVE'        = 'DARC Mikrowellenwettbewerb'
+			'DARC-TRAINEE'          = 'DARC Trainee Contest'
+			'DARC-UKW-FIELD-DAY'    = 'DARC UKW-Fieldday'
+			'DARC-UKW-SPRING'       = 'DARC UKW-Fruehjahrscontest'
+			'DARC-VHF-UHF-MICROWAVE' = 'DARC VHF, UHF, Microwave Contest'
 			'DARC-WAEDC-CW'         = 'WAE DX Contest (CW)'
 			'DARC-WAEDC-RTTY'       = 'WAE DX Contest (RTTY)'
 			'DARC-WAEDC-SSB'        = 'WAE DX Contest (SSB)'
@@ -303,6 +320,7 @@ class ADIFEnumerations {
 			'DE-QSO-PARTY'          = 'Delaware QSO Party'
 			'DL-DX-RTTY'            = 'DL-DX RTTY Contest'
 			'DMC-RTTY'              = 'DMC RTTY Contest'
+			'EASTER'                = 'Easter Contest'
 			'EA-CNCW'               = 'Concurso Nacional de Telegrafía'
 			'EA-DME'                = 'Municipios Españoles'
 			'EA-MAJESTAD-CW'        = 'His Majesty The King of Spain CW Contest (2022 and later)'
@@ -342,6 +360,7 @@ class ADIFEnumerations {
 			'JIDX-CW'               = 'Japan International DX Contest (CW)'
 			'JIDX-SSB'              = 'Japan International DX Contest (SSB)'
 			'JT-DX-RTTY'            = 'Mongolian RTTY DX Contest'
+			'K1USN-SSO'             = 'K1USN Slow Speed Organized'
 			'K1USN-SST'             = 'K1USN Slow Speed Test'
 			'KS-QSO-PARTY'          = 'Kansas QSO Party'
 			'KY-QSO-PARTY'          = 'Kentucky QSO Party'
@@ -363,6 +382,7 @@ class ADIFEnumerations {
 			'NAQP-CW'               = 'North America QSO Party (CW)'
 			'NAQP-RTTY'             = 'North America QSO Party (RTTY)'
 			'NAQP-SSB'              = 'North America QSO Party (Phone)'
+			'NAVAL'                 = 'Naval Contest'
 			'NC-QSO-PARTY'          = 'North Carolina QSO Party'
 			'ND-QSO-PARTY'          = 'North Dakota QSO Party'
 			'NE-QSO-PARTY'          = 'Nebraska QSO Party'
@@ -383,8 +403,10 @@ class ADIFEnumerations {
 			'OMISS-QSO-PARTY'       = 'Old Man International Sideband Society QSO Party'
 			'ON-QSO-PARTY'          = 'Ontario QSO Party'
 			'OR-QSO-PARTY'          = 'Oregon QSO Party'
+			'ORARI-DX'              = 'ORARI DX Contest'
 			'PA-QSO-PARTY'          = 'Pennsylvania QSO Party'
 			'PACC'                  = 'Dutch PACC Contest'
+			'PCC'                   = 'PODXS Pancake Contest'
 			'PSK-DEATHMATCH'        = 'MDXA PSK DeathMatch (2005-2010)'
 			'QC-QSO-PARTY'          = 'Quebec QSO Party'
 			'RAC'                   = 'Canadian Amateur Radio Society Contest'
@@ -417,6 +439,7 @@ class ADIFEnumerations {
 			'SC-QSO-PARTY'          = 'South Carolina QSO Party'
 			'SCC-RTTY'              = 'SCC RTTY Championship'
 			'SD-QSO-PARTY'          = 'South Dakota QSO Party'
+			'ShortRY'               = 'ShortRY Contest'
 			'SMP-AUG'               = 'SSA Portabeltest'
 			'SMP-MAY'               = 'SSA Portabeltest'
 			'SP-DX-RTTY'            = 'PRC SPDX Contest (RTTY)'
@@ -477,7 +500,7 @@ class ADIFEnumerations {
 			'SA' = 'South America'
 			'EU' = 'Europe'
 			'AF' = 'Africa'
-			'OC' = 'Oceana'
+			'OC' = 'Oceania'
 			'AS' = 'Asia'
 			'AN' = 'Antarctica'
 		}
@@ -925,10 +948,10 @@ class ADIFEnumerations {
 			456 = "SENEGAL"
 			458 = "SIERRA LEONE"
 			460 = "ROTUMA I."
-			462 = "SOUTH AFRICA"
+			462 = "REPUBLIC OF SOUTH AFRICA"
 			464 = "NAMIBIA"
 			466 = "SUDAN"
-			468 = "SWAZILAND"
+			468 = "KINGDOM OF ESWATINI"
 			470 = "TANZANIA"
 			474 = "TUNISIA"
 			478 = "EGYPT"
@@ -943,7 +966,7 @@ class ADIFEnumerations {
 			497 = "CROATIA"
 			499 = "SLOVENIA"
 			501 = "BOSNIA-HERZEGOVINA"
-			502 = "MACEDONIA"
+			502 = "NORTH MACEDONIA (REPUBLIC OF)"
 			503 = "CZECH REPUBLIC"
 			504 = "SLOVAK REPUBLIC"
 			505 = "PRATAS I."
@@ -959,7 +982,7 @@ class ADIFEnumerations {
 			515 = "SWAINS I."
 			516 = "SAINT BARTHELEMY"
 			517 = "CURACAO"
-			518 = "ST MAARTEN"
+			518 = "SINT MAARTEN"
 			519 = "SABA & ST. EUSTATIUS"
 			520 = "BONAIRE"
 			521 = "SOUTH SUDAN (REPUBLIC OF)"
@@ -981,18 +1004,20 @@ class ADIFEnumerations {
 			'DYNAMIC'      = [PSCustomObject]@{'Submodes' = @('VARA HF', 'VARA SATELLITE', 'VARA FM 1200', 'VARA FM 9600'); 'Description' = ''}
 			'FAX'          = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
 			'FM'           = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
+			'FSK'          = [PSCustomObject]@{'Submodes' = @('SCAMP_FAST', 'SCAMP_SLOW', 'SCAMP_VSLOW'); 'Description' = 'Frequency shift keying'}
 			'FSK441'       = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
 			'FT8'          = [PSCustomObject]@{'Submodes' = @(''); 'Description' = 'Franke-Taylor design, 8-FSK modulation'}
-			'HELL'         = [PSCustomObject]@{'Submodes' = @('FMHELL', 'FSKHELL', 'HELL80', 'HELLX5', 'HELLX9', 'HFSK', 'PSKHELL', 'SLOWHELL'); 'Description' = ''}
+			'HELL'         = [PSCustomObject]@{'Submodes' = @('FMHELL', 'FSKH105', 'FSKH245', 'FSKHELL', 'HELL80', 'HELLX5', 'HELLX9', 'HFSK', 'PSKHELL', 'SLOWHELL'); 'Description' = ''}
 			'ISCAT'        = [PSCustomObject]@{'Submodes' = @('ISCAT-A', 'ISCAT-B'); 'Description' = ''}
 			'JT4'          = [PSCustomObject]@{'Submodes' = @('JT4A', 'JT4B', 'JT4C', 'JT4D', 'JT4E', 'JT4F', 'JT4G'); 'Description' = ''}
 			'JT6M'         = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
 			'JT9'          = [PSCustomObject]@{'Submodes' = @('JT9-1', 'JT9-2', 'JT9-5', 'JT9-10', 'JT9-30', 'JT9A', 'JT9B', 'JT9C', 'JT9D', 'JT9E', 'JT9E FAST', 'JT9F', 'JT9F FAST', 'JT9G', 'JT9G FAST', 'JT9H', 'JT9H FAST'); 'Description' = ''}
 			'JT44'         = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
 			'JT65'         = [PSCustomObject]@{'Submodes' = @('JT65A', 'JT65B', 'JT65B2', 'JT65C', 'JT65C2'); 'Description' = ''}
-			'MFSK'         = [PSCustomObject]@{'Submodes' = @('FSQCALL', 'FST4', 'FST4W', 'FT4', 'JS8', 'JTMS', 'MFSK4', 'MFSK8', 'MFSK11', 'MFSK16', 'MFSK22', 'MFSK31', 'MFSK32', 'MFSK64', 'MFSK64L', 'MFSK128 MFSK128L', 'Q65'); 'Description' = ''}
+			'MFSK'         = [PSCustomObject]@{'Submodes' = @('FSQCALL', 'FST4', 'FST4W', 'FT4', 'JS8', 'JTMS', 'MFSK4', 'MFSK8', 'MFSK11', 'MFSK16', 'MFSK22', 'MFSK31', 'MFSK32', 'MFSK64', 'MFSK64L', 'MFSK128', 'MFSK128L', 'Q65'); 'Description' = ''}
 			'MSK144'       = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
 			'MT63'         = [PSCustomObject]@{'Submodes' = @(''); 'Description' = ''}
+			'MTONE'        = [PSCustomObject]@{'Submodes' = @('SCAMP_OO', 'SCAMP_OO_SLW'); 'Description' = 'Single modulated tone'}
 			'OLIVIA'       = [PSCustomObject]@{'Submodes' = @('OLIVIA 4/125', 'OLIVIA 4/250', 'OLIVIA 8/250', 'OLIVIA 8/500', 'OLIVIA 16/500', 'OLIVIA 16/1000', 'OLIVIA 32/1000'); 'Description' = ''}
 			'OPERA'        = [PSCustomObject]@{'Submodes' = @('OPERA-BEACON', 'OPERA-QSO'); 'Description' = ''}
 			'PAC'          = [PSCustomObject]@{'Submodes' = @('PAC2', 'PAC3', 'PAC4'); 'Description' = ''}
@@ -1094,6 +1119,8 @@ class ADIFEnumerations {
 			'FMHELL'         = [PSCustomObject]@{'Mode' = 'HELL'; 'Description' = ''}
 			'FREEDV'         = [PSCustomObject]@{'Mode' = 'DIGITALVOICE'; 'Description' = 'Digital voice mode for HF radio implemented with open source'}
 			'FSK31'          = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'FSKH105'        = [PSCustomObject]@{'Mode' = 'HELL'; 'Description' = ''}
+			'FSKH245'        = [PSCustomObject]@{'Mode' = 'HELL'; 'Description' = ''}
 			'FSKHELL'        = [PSCustomObject]@{'Mode' = 'HELL'; 'Description' = ''}
 			'FSQCALL'        = [PSCustomObject]@{'Mode' = 'MFSK'; 'Description' = 'FSQCall protocol used with FSQ (Fast Simple QSO) transmission mode'}
 			'FST4'           = [PSCustomObject]@{'Mode' = 'MFSK'; 'Description' = 'This is a digital mode supported by the WSJT-X software'}
@@ -1175,23 +1202,33 @@ class ADIFEnumerations {
 			'PSK63RC4'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK63RC5'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125'         = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK125C12'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK125R'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125RC10'     = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125RC12'     = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125RC16'     = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125RC4'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK125RC5'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250'         = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK250C6'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK250R'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250RC2'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250RC3'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250RC5'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250RC6'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK250RC7'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK500'         = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK500C2'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK500C4'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK500R'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK500RC2'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK500RC3'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK500RC4'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK800C2'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK800RC2'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK1000'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK1000C2'      = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
+			'PSK1000R'       = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSK1000RC2'     = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSKAM10'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'PSKAM31'        = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
@@ -1214,6 +1251,11 @@ class ADIFEnumerations {
 			'ROS-MF'         = [PSCustomObject]@{'Mode' = 'ROS'; 'Description' = ''}
 			'SIM31'          = [PSCustomObject]@{'Mode' = 'PSK'; 'Description' = ''}
 			'SITORB'         = [PSCustomObject]@{'Mode' = 'TOR'; 'Description' = ''}
+			'SCAMP_FAST'     = [PSCustomObject]@{'Mode' = 'FSK'; 'Description' = ''}
+			'SCAMP_OO'       = [PSCustomObject]@{'Mode' = 'MTONE'; 'Description' = ''}
+			'SCAMP_OO_SLW'   = [PSCustomObject]@{'Mode' = 'MTONE'; 'Description' = ''}
+			'SCAMP_SLOW'     = [PSCustomObject]@{'Mode' = 'FSK'; 'Description' = ''}
+			'SCAMP_VSLOW'    = [PSCustomObject]@{'Mode' = 'FSK'; 'Description' = ''}
 			'SLOWHELL'       = [PSCustomObject]@{'Mode' = 'HELL'; 'Description' = ''}
 			'THOR-M'         = [PSCustomObject]@{'Mode' = 'THOR'; 'Description' = ''}
 			'THOR4'          = [PSCustomObject]@{'Mode' = 'THOR'; 'Description' = ''}
@@ -1267,6 +1309,26 @@ class ADIFEnumerations {
 	}
 
 	# Primary Administrative Subdivision's can SMN. :)
+
+	static [PSCustomObject] EQSL_AG() {
+		return [PSCustomObject]@{
+			'Y' = 'confirmed and Authenticity Guaranteed by eQSL'
+			'N' = 'confirmed but not Authenticity Guaranteed by eQSL'
+			'U' = 'unknown'
+		}
+	}
+
+	static [PSCustomObject] MorseKeyType() {
+		return [PSCustomObject]@{
+			'SK'  = 'Straight key'
+			'SS'  = 'Sideswiper/Cootie key'
+			'BUG' = 'Semi-automatic key/Bug'
+			'FAB' = 'Fully automatic bug'
+			'SP'  = 'Single-lever paddle'
+			'DP'  = 'Double-lever paddle'
+			'CPU' = 'Keyboard/CPU'
+		}
+	}
 
 	static [PSCustomObject] QSLMedium() {
 		return [PSCustomObject]@{
@@ -1322,6 +1384,14 @@ class ADIFEnumerations {
 		}
 	}
 
+	static [PSCustomObject] QSODownloadStatus() {
+		return [PSCustomObject]@{
+			'Y' = 'the QSO has been downloaded from the online service'
+			'N' = 'the QSO has not been downloaded from the online service'
+			'I' = 'ignore or invalid'
+		}
+	}
+
 	# Secondary Administrative Subdivision's can SMN. :)
 
 	# County/Region specific enums can SMN. :)
@@ -1373,6 +1443,7 @@ class ADIFEnumerations {
 			'CLUBLOG_QSO_UPLOAD_DATE'    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the date the QSO was last uploaded to the Club Log online service" }
 			'CLUBLOG_QSO_UPLOAD_STATUS'  = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSOUploadStatus'; 'secondary' = ''}; 'Description' = "the upload status of the QSO on the Club Log online service" }
 			'CNTY'                       = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the contacted station's Secondary Administrative Subdivision (e.g. US county, JA Gun), in the specified format " }
+			'CNTY_ALT'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'SecondarySubdivisionListAlt'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the contacted station's Secondary Administrative Subdivision alternate list" }
 			'COMMENT'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "comment field for QSO" }
 			'COMMENT_INTL'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'IntlString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "comment field for QSO" }
 			'CONT'                       = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Continent'; 'secondary' = ''}; 'Description' = "the contacted station's Continent" }
@@ -1384,10 +1455,15 @@ class ADIFEnumerations {
 			'CREDIT_SUBMITTED'           = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'CreditList'; 'secondary' = 'AwardList' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Credit'; 'secondary' = 'Award'}; 'Description' = "the list of credits sought for this QSO" }
 			'CREDIT_GRANTED'             = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'CreditList'; 'secondary' = 'AwardList' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Credit'; 'secondary' = 'Award'}; 'Description' = "the list of credits granted to this QSO" }
 			'DARC_DOK'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the contacted station's DARC DOK (District Location Code)" }
+			'DCL_QSLRDATE'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "date QSL received from DCL" }
+			'DCL_QSLSDATE'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "date QSL sent to DCL" }
+			'DCL_QSL_RCVD'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSLRcvd'; 'secondary' = ''}; 'Description' = "DCL QSL received status" }
+			'DCL_QSL_SENT'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSLSent'; 'secondary' = ''}; 'Description' = "DCL QSL sent status" }
 			'DISTANCE'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Number'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the distance between the logging station and the contacted station in kilometers via the specified signal path with a value greater than or equal to 0" }
 			'DXCC'                       = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'DXCCEntityCode'; 'secondary' = ''}; 'Description' = "the contacted station's DXCC Entity Code" }
 			'EMAIL'                      = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the contacted station's email address" }
 			'EQ_CALL'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the contacted station's owner's callsign" }
+			'EQSL_AG'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'EQSL_AG'; 'secondary' = ''}; 'Description' = "the contacted station's eQSL Authenticity Guaranteed status" }
 			'EQSL_QSLRDATE'              = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "date QSL received from eQSL.cc" }
 			'EQSL_QSLSDATE'              = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "date QSL sent to eQSL.cc" }
 			'EQSL_QSL_RCVD'              = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSLRcvd'; 'secondary' = ''}; 'Description' = "eQSL.cc QSL received status" }
@@ -1418,6 +1494,8 @@ class ADIFEnumerations {
 			'LOTW_QSL_SENT'              = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSLSent'; 'secondary' = ''}; 'Description' = "ARRL Logbook of the World QSL sent status" }
 			'MAX_BURSTS'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Number'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "maximum length of meteor scatter bursts heard by the logging station, in seconds with a value greater than or equal to 0" }
 			'MODE'                       = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Mode'; 'secondary' = ''}; 'Description' = "QSO Mode" }
+			'MORSE_KEY_INFO'             = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "a description of the logging station's Morse key" }
+			'MORSE_KEY_TYPE'             = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'MorseKeyType'; 'secondary' = ''}; 'Description' = "the type of Morse key used by the logging station" }
 			'MS_SHOWER'                  = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "For Meteor Scatter QSOs, the name of the meteor shower in progress" }
 			'MY_ALTITUDE'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Number'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the height of the logging station in meters relative to Mean Sea Level (MSL)." }
 			'MY_ANTENNA'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's antenna" }
@@ -1426,9 +1504,11 @@ class ADIFEnumerations {
 			'MY_CITY'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's city" }
 			'MY_CITY_INTL'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'IntlString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's city" }
 			'MY_CNTY'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's Secondary Administrative Subdivision (e.g. US county, JA Gun), in the specified format" }
+			'MY_CNTY_ALT'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'SecondarySubdivisionListAlt'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's Secondary Administrative Subdivision alternate list" }
 			'MY_COUNTRY'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Country'; 'secondary' = ''}; 'Description' = "the logging station's DXCC entity name" }
 			'MY_COUNTRY_INTL'            = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'IntlString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'Country'; 'secondary' = ''}; 'Description' = "the logging station's DXCC entity name" }
 			'MY_CQ_ZONE'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'PositiveInteger'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's CQ Zone in the range 1 to 40 (inclusive)" }
+			'MY_DARC_DOK'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's DARC DOK (District Location Code)" }
 			'MY_DXCC'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'DXCCEntityCode'; 'secondary' = ''}; 'Description' = "the logging station's DXCC Entity Code" }
 			'MY_FISTS'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'PositiveInteger'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's FISTS CW Club member number with a value greater than 0." }
 			'MY_GRIDSQUARE'              = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'GridSquare'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's 2-character, 4-character, 6-character, or 8-character Maidenhead Grid Square" }
@@ -1438,6 +1518,8 @@ class ADIFEnumerations {
 			'MY_ITU_ZONE'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'PositiveInteger'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's ITU zone in the range 1 to 90 (inclusive)" }
 			'MY_LAT'                     = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Location'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's latitude" }
 			'MY_LON'                     = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Location'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's longitude" }
+			'MY_MORSE_KEY_INFO'          = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "a description of the logging station's Morse key" }
+			'MY_MORSE_KEY_TYPE'          = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'MorseKeyType'; 'secondary' = ''}; 'Description' = "the type of Morse key used by the logging station" }
 			'MY_NAME'                    = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging operator's name" }
 			'MY_NAME_INTL'               = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'IntlString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging operator's name" }
 			'MY_POSTAL_CODE'             = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the logging station's postal code" }
@@ -1469,10 +1551,13 @@ class ADIFEnumerations {
 			'PRECEDENCE'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "contest precedence (e.g. for ARRL Sweepstakes)" }
 			'PROP_MODE'                  = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'PropagationMode'; 'secondary' = ''}; 'Description' = "QSO propagation mode" }
 			'PUBLIC_KEY'                 = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'String'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "public encryption key" }
+			'QRZCOM_QSO_DOWNLOAD_DATE'   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the date the QSO was last downloaded from the QRZ.COM online service" }
+			'QRZCOM_QSO_DOWNLOAD_STATUS' = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSODownloadStatus'; 'secondary' = ''}; 'Description' = "the download status of the QSO from the QRZ.COM online service" }
 			'QRZCOM_QSO_UPLOAD_DATE'     = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "the date the QSO was last uploaded to the QRZ.COM online service" }
 			'QRZCOM_QSO_UPLOAD_STATUS'   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSOUploadStatus'; 'secondary' = ''}; 'Description' = "the upload status of the QSO on the QRZ.COM online service" }
 			'QSLMSG'                     = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'MultilineString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "QSL card message" }
 			'QSLMSG_INTL'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'IntlMultilineString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "QSL card message" }
+			'QSLMSG_RCVD'                = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'MultilineString'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "QSL card message received" }
 			'QSLRDATE'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "QSL received date" }
 			'QSLSDATE'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Date'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = ''; 'secondary' = ''}; 'Description' = "QSL sent date" }
 			'QSL_RCVD'                   = [PSCustomObject]@{ 'DataType' = [PSCustomObject]@{ 'primary' = 'Enumeration'; 'secondary' = '' }; 'Enumeration' = [PSCustomObject]@{'primary' = 'QSLRcvd'; 'secondary' = ''}; 'Description' = "QSL received status" }
@@ -1685,14 +1770,105 @@ class ADIFTokenizer {
 	}
 
 	[void] ProcessAll() {
+		if ($this.DebugTokenizer) {
+			$this.ProcessAllDebug()
+		} else {
+			$this.ProcessAllFast()
+		}
+	}
+
+	hidden [void] ProcessAllDebug() {
+		$TokenList = [System.Collections.Generic.List[ADIFTokenInstance]]::new()
 		$Token = [ADIFTokenInstance]::new()
 		while ($this.Index -lt $this.ADIF.Length) {
 			$Token = $this.ProcessNext($Token, $this.ADIF[$this.Index])
 			if ($Token.Complete) {
-				$this.Tokens += $Token
+				$TokenList.Add($Token)
 				$Token = [ADIFTokenInstance]::new()
 			}
 		}
+		$this.Tokens = $TokenList.ToArray()
+	}
+
+	hidden [void] ProcessAllFast() {
+		# Inlined state machine — same logic as the StateMethod_* methods,
+		# but avoids per-character dynamic method dispatch overhead.
+		# Hot class properties are copied to locals to avoid repeated
+		# property resolution on every loop iteration.
+		$TokenList = [System.Collections.Generic.List[ADIFTokenInstance]]::new()
+		$Token     = [ADIFTokenInstance]::new()
+		$src       = $this.ADIF
+		$src = $src
+		$srcLen    = $src.Length
+		$ix        = $this.Index
+		$st        = $this.State
+
+		while ($ix -lt $srcLen) {
+			$c = $src[$ix]
+
+			switch ($st) {
+				([TokenizerState]::None) {
+					if ($c -eq '<') { $st = [TokenizerState]::FieldName }
+				}
+				([TokenizerState]::FieldName) {
+					switch ($c) {
+						':'     { $st = [TokenizerState]::FieldLength }
+						'>'     {
+							$Token.Complete = $true
+							$st = [TokenizerState]::None
+						}
+						default { $Token.Field += $c }
+					}
+				}
+				([TokenizerState]::FieldLength) {
+					switch ($c) {
+						'>'     {
+							$Token.ValueLength = [int]$Token.LengthString
+							# Bulk-read the entire value with Substring instead of per-char loop
+							if ($Token.ValueLength -gt 0) {
+								$Token.Value = $src.Substring($ix + 1, $Token.ValueLength)
+								$Token.ReadLength = $Token.ValueLength
+								$ix += $Token.ValueLength
+							}
+							$st = [TokenizerState]::Comment
+						}
+						':'     { $Token.ValueLength = [int]$Token.LengthString; $st = [TokenizerState]::FieldDataType }
+						default { $Token.LengthString += $c }
+					}
+				}
+				([TokenizerState]::FieldDataType) {
+					if ($c -eq '>') {
+						# Bulk-read the entire value with Substring instead of per-char loop
+						if ($Token.ValueLength -gt 0) {
+							$Token.Value = $src.Substring($ix + 1, $Token.ValueLength)
+							$Token.ReadLength = $Token.ValueLength
+							$ix += $Token.ValueLength
+						}
+						$st = [TokenizerState]::Comment
+					}
+					else { $Token.DataType += $c }
+				}
+				([TokenizerState]::Comment) {
+					if ($c -eq '<') {
+						$Token.Complete = $true
+						$st = [TokenizerState]::FieldName
+					} else {
+						$Token.Comment += $c
+					}
+				}
+			}
+
+			if ($Token.Complete) {
+				$TokenList.Add($Token)
+				$Token = [ADIFTokenInstance]::new()
+			}
+
+			$ix++
+		}
+
+		$this.Index  = $ix
+		$this.State  = $st
+		$this.Tokens = $TokenList.ToArray()
 	}
 
 	[void] Init([String]$Data, [bool]$RunNow, [bool]$DebugTokenizer) {
@@ -1710,22 +1886,23 @@ class ADIFTokenizer {
 	}
 
 	[String] GetADIF() {
-		$this.ADIF = "ADIF Export from PowerADIF $([ADIFEnumerations]::PowerADIFVersion())`n"
+		$sb = [System.Text.StringBuilder]::new("ADIF Export from PowerADIF $([ADIFEnumerations]::PowerADIFVersion())`n")
 		foreach($Token in $this.Tokens) {
-			$this.ADIF += "<"
-			$this.ADIF += $Token.Field
+			[void]$sb.Append('<')
+			[void]$sb.Append($Token.Field)
 			if($Token.ValueLength) {
-				$this.ADIF += ":"
-				$this.ADIF += $Token.ValueLength
+				[void]$sb.Append(':')
+				[void]$sb.Append($Token.ValueLength)
 			}
 			if($Token.DataType) {
-				$this.ADIF += ":"
-				$this.ADIF += $Token.DataType
+				[void]$sb.Append(':')
+				[void]$sb.Append($Token.DataType)
 			}
-			$this.ADIF += ">"
-			$this.ADIF += $Token.Value
-			$this.ADIF += $Token.Comment
+			[void]$sb.Append('>')
+			[void]$sb.Append($Token.Value)
+			[void]$sb.Append($Token.Comment)
 		}
+		$this.ADIF = $sb.ToString()
 		return $this.ADIF
 	}
 
@@ -1751,7 +1928,7 @@ class ADIFRecord {
 	hidden [System.Collections.Hashtable]$Comments
 
 	[void] AddField([string]$Field, [string]$Value, [string]$FieldDataType, [string]$Comment) {
-		$this | Add-Member -MemberType NoteProperty -Name $Field -Value $Value
+		$this.PSObject.Properties.Add([PSNoteProperty]::new($Field, $Value))
 		if($FieldDataType) {
 			$this.DataTypes[$Field] = $FieldDataType
 		}
@@ -1783,23 +1960,23 @@ class ADIFStructure {
 	}
 
 	[ADIFTokenInstance[]] Tokenize() {
-		[ADIFTokenInstance[]]$OutputTokens = [ADIFTokenInstance[]]@()
+		$TokenList = [System.Collections.Generic.List[ADIFTokenInstance]]::new()
 
 		$ParseHeader = ($this.Header | Get-Member -MemberType NoteProperty)
 		foreach($Field in $ParseHeader) {
-			$OutputTokens += [ADIFTokenInstance]::New($Field.Name, $this.Header.DataTypes[$Field.Name], $this.Header."$($Field.Name)", $this.Header.Comments[$Field.Name])
+			$TokenList.Add([ADIFTokenInstance]::New($Field.Name, $this.Header.DataTypes[$Field.Name], $this.Header."$($Field.Name)", $this.Header.Comments[$Field.Name]))
 		}
-		$OutputTokens += [ADIFTokenInstance]::New("EOH","","","`n")
+		$TokenList.Add([ADIFTokenInstance]::New("EOH","","","`n"))
 
 		foreach($Record in $this.Records) {
 			$ParseRecord = ($Record | Get-Member -MemberType NoteProperty)
 			foreach ($Field in $ParseRecord) {
-				$OutputTokens += [ADIFTokenInstance]::New($Field.Name, $Record.DataTypes[$Field.Name], $Record."$($Field.Name)", $Record.Comments[$Field.Name])
+				$TokenList.Add([ADIFTokenInstance]::New($Field.Name, $Record.DataTypes[$Field.Name], $Record."$($Field.Name)", $Record.Comments[$Field.Name]))
 			}
-			$OutputTokens += [ADIFTokenInstance]::New("EOR","","","`n")
+			$TokenList.Add([ADIFTokenInstance]::New("EOR","","","`n"))
 		}
 
-		return $OutputTokens
+		return $TokenList.ToArray()
 	}
 }
 
@@ -1888,14 +2065,13 @@ function ConvertFrom-ADIF {
 
 		[ADIFStructure]$ADIF = [ADIFStructure]::new($Tokens)
 
+		$RecordList = [System.Collections.Generic.List[ADIFRecord]]::new()
 		[ADIFRecord]$Record = [ADIFRecord]::new()
-
-		[int]$TokenIndex = 0
 
 		foreach ($Token in $Tokens) {
 			if($ADIF.HeaderParsed) {
 				if($Token.Field -eq "EOR") {
-					$ADIF.Records += $Record
+					$RecordList.Add($Record)
 					$Record = [ADIFRecord]::new()
 				} else {
 					$Record.AddField($Token.Field, $Token.Value, $Token.DataType, $Token.Comment)
@@ -1907,8 +2083,8 @@ function ConvertFrom-ADIF {
 					$ADIF.Header.AddField($Token.Field, $Token.Value, $Token.DataType, $Token.Comment)
 				}
 			}
-			$TokenIndex++
 		}
+		$ADIF.Records = $RecordList.ToArray()
 
 		return [ADIFStructure]$ADIF
 	}
