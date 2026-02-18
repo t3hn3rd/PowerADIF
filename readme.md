@@ -8,7 +8,7 @@
 ## 🎯 Features
 - Import ADIF `.adi` files and parse them into PowerShell objects.
 - Export PowerShell objects into valid ADIF format.
-- Adheres to the [ADIF 3.1.4 specification](https://adif.org/314/ADIF_314.htm) for `.adi` files.
+- Adheres to the [ADIF 3.1.6 specification](https://adif.org/316/ADIF_316.htm) for `.adi` files.
 
 ## ❌ Non-Features
 - Does not intend to support or parse `.adx` files for the time being. An XML parser should work for this.
@@ -62,13 +62,13 @@ $ADIFString
 ```
 
 ## ⚙️ Functions
-- **`ConvertTo-ADIFTokens`** - Converts raw ADIF data into tokenized objects.  
-- **`ConvertFrom-ADIFTokens`** - Converts tokenized ADIF objects back into ADIF format.  
-- **`ConvertFrom-ADIF`** - Parses raw ADIF data into a structured object containing headers and records.  
-- **`ConvertTo-ADIF`** - Converts an `ADIFStructure` object into raw ADIF format.  
-- **`Import-ADIF`** - Reads an ADIF file from disk and converts it to an `ADIFStructure` object.  
-- **`Export-ADIF`** - Converts an `ADIFStructure` object into ADIF format and saves it to a file.  
-- **`Get-ADIFEnumerations`** - Retrieves a (limited) list of ADIF enumerations available in the ADIF specification.  
+- **`Import-ADIF`** - Reads an ADIF file from disk and converts it to an `ADIFStructure` object.
+- **`Export-ADIF`** - Converts an `ADIFStructure` object into ADIF format and saves it to a file.
+- **`ConvertFrom-ADIF`** - Parses raw ADIF data into a structured object containing headers and records.
+- **`ConvertTo-ADIF`** - Converts an `ADIFStructure` object into raw ADIF format.
+- **`ConvertTo-ADIFTokens`** - Converts raw ADIF data into tokenized objects.
+- **`ConvertFrom-ADIFTokens`** - Converts tokenized ADIF objects back into ADIF format.
+- **`Get-ADIFEnumerations`** - Retrieves ADIF enumerations available in the ADIF specification.
 
 ## 📄 License
 This module is licensed under the Apache 2.0 License.
